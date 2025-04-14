@@ -56,10 +56,9 @@ export default function Home() {
                 aria-label="Toggle Theme"
                 onClick={toggleTheme}
                 isPressed={isDarkMode}
-                baseColor="bg-neutral-100"
-                pressedColor="bg-blue-300"
+                baseColor="bg-neutral-100 dark:bg-neutral-300"
               >
-                <Moon className="h-4 w-4" />
+                <Moon className="h-4 w-4 fill-blue-500 opacity-40 dark:opacity-100 text-transparent" />
               </ClickyButton>
             </div>
           </div>
