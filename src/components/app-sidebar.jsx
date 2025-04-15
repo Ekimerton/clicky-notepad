@@ -31,7 +31,6 @@ export function AppSidebar() {
             </DialogContent>
           </Dialog>
           <Button
-            size="sm"
             variant="outline"
             className="flex items-center gap-2"
           >
@@ -43,7 +42,7 @@ export function AppSidebar() {
         <div className="p-2 pt-0 pr-0">
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" className="w-full bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:hover:bg-yellow-800 text-center justify-center gap-2">
+              <Button variant="outline" className="w-full bg-yellow-100 hover:bg-yellow-200 border-yellow-200 hover:border-yellow-300 dark:bg-yellow-900 dark:hover:bg-yellow-800 dark:border-yellow-800 dark:hover:border-yellow-700 text-center justify-center gap-2">
                 <Trophy className="h-5 w-5" />
                 0/21 achievements
               </Button>
@@ -58,7 +57,7 @@ export function AppSidebar() {
           </Dialog>
         </div>
         {/* Divider */}
-        <Separator className="my-2 ml-2" />
+        <Separator className="my-1 ml-2" />
         {/* Notes List Area */}
         <div className="flex-grow p-2 pr-0">
           <Button variant="ghost" className="w-full justify-start hover:bg-neutral-200 dark:hover:bg-neutral-800">
