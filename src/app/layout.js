@@ -2,6 +2,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MuteProvider } from "@/contexts/MuteProvider";
+import { NotesProvider } from "@/contexts/NotesContext";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -24,13 +25,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-100 h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-100 dark:bg-neutral-900 h-screen`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SidebarProvider>
             <MuteProvider>
-              <AppSidebar />
-              <main className="flex-1">{children}</main>
+              <NotesProvider>
+                <AppSidebar />
+                <main className="flex-1 p-2 pl-0">{children}</main>
+              </NotesProvider>
             </MuteProvider>
           </SidebarProvider>
         </ThemeProvider>
