@@ -8,7 +8,7 @@ const ClickyTextarea = ({ value, onChange }) => {
     <Textarea
       value={value}
       onChange={onChange}
-      className="w-full h-full resize-none focus:outline-none focus:ring-0 border-none p-4 pt-0"
+      className="w-full h-full resize-none focus:outline-none focus:ring-0 border-none p-4 pt-0 max-w-3xl mx-auto"
       placeholder="Start typing..."
     />
   );

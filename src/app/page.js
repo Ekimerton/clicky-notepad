@@ -14,10 +14,21 @@ import { MuteToggle } from "@/components/MuteToggle";
 export default function Home() {
   const { selectedNote, updateNote } = useNotes();
   const [mounted, setMounted] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      const intervalId = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [mounted]);
 
   const handleTitleChange = (event) => {
     if (selectedNote) {
@@ -32,13 +43,22 @@ export default function Home() {
     }
   };
 
+  const formatTime = (totalSeconds) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
+  };
+
   if (!mounted) {
     return <div className="h-full w-full"></div>;
   }
 
   return (
     <div
-      className={`flex flex-col border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 rounded-md h-full overflow-hidden ml-2`}
+      className={`relative flex flex-col border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 rounded-md h-full overflow-hidden ml-2`}
     >
       <div className="flex-1 flex flex-col h-full">
         <div className="p-2 flex justify-between items-center">
@@ -64,7 +84,7 @@ export default function Home() {
               value={selectedNote.title}
               onChange={handleTitleChange}
               placeholder="Untitled Note"
-              className="text-3xl p-0 px-2 font-semibold dark:text-white border-none dark:bg-neutral-800 bg-transparent shadow-none outline-none w-full h-auto"
+              className="text-3xl p-0 px-2 font-semibold dark:text-white border-none dark:bg-neutral-800 bg-transparent shadow-none outline-none w-full h-auto text-center"
             />
           ) : (
             <h1 className="text-lg font-semibold dark:text-white text-neutral-400">
@@ -72,7 +92,7 @@ export default function Home() {
             </h1>
           )}
         </div>
-        <div className="flex-grow relative pt-3">
+        <div className="flex-grow relative pt-2 flex justify-center">
           {selectedNote ? (
             <ClickyTextarea
               value={selectedNote.content}
@@ -84,6 +104,9 @@ export default function Home() {
             </div>
           )}
         </div>
+      </div>
+      <div className="absolute bottom-2 right-3 text-xs text-neutral-500 dark:text-neutral-400">
+        {formatTime(elapsedTime)} • {selectedNote?.content?.length || 0} chars
       </div>
     </div>
   );
