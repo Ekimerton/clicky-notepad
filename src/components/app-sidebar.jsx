@@ -19,7 +19,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-none w-64 fixed top-0 left-0 h-screen z-10 mr-2 mt-2">
       <SidebarContent className="flex gap-0 flex-col bg-neutral-100 dark:bg-neutral-900 h-full">
-        <div className="flex items-center justify-between p-2 pr-0">
+        <div className="flex items-center justify-between p-2 lg:pr-0">
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" size="icon">
@@ -43,7 +43,7 @@ export function AppSidebar() {
             New Note
           </Button>
         </div>
-        <div className="p-2 pt-0 pr-0">
+        <div className="p-2 pt-0 pr-2 lg:pr-0">
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" className="w-full bg-yellow-100 hover:bg-yellow-200 border-yellow-200 hover:border-yellow-300 dark:bg-yellow-900 dark:hover:bg-yellow-800 dark:border-yellow-800 dark:hover:border-yellow-700 text-center justify-center gap-2">
